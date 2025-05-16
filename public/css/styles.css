@@ -1,7 +1,30 @@
 body {
-  padding-top: 50px;
   background-color: #f5f5f5;
 }
 .modal-content input {
   margin-bottom: 15px;
+}
+/* Ensure the page fills the screen */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Wrapper holds everything and grows to fill screen */
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content should grow as needed */
+.site-content {
+  flex: 1;
+}
+
+/* Optional styling */
+footer.page-footer {
+  padding: 10px 0;
 }
