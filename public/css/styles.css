@@ -19,16 +19,11 @@ footer {
   flex-shrink: 0;
 }
 
-/* Optional styles */
-.error-text {
-  color: red;
-  font-size: 0.8rem;
-  margin-top: -10px;
-  margin-bottom: 10px;
-  display: none;
+.card-content {
+  min-height: 140px;
 }
 
-.success-msg {
-  color: green;
-  margin-top: 15px;
+.card .card-image img {
+  height: 300px;
+  object-fit: cover;
 }
