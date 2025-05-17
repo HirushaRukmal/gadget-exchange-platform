@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - GadgetX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <main class="site-content">
+      <nav class="teal darken-2">
+        <div class="nav-wrapper container">
+          <a href="index.html" class="brand-logo">GadgetX</a>
+          <ul class="right">
+            <li><a href="register.html" class="btn">Register</a></li>
+            <li><a href="login.html" class="btn">Login</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container">
+        <h4 class="center">Login</h4>
+        <form id="loginForm">
+          <div class="input-field">
+            <input type="email" id="email" name="email" />
+            <label for="email">Email</label>
+            <span class="error-text" id="emailError">Invalid email</span>
+          </div>
+
+          <div class="input-field">
+            <input type="password" id="password" name="password" />
+            <label for="password">Password</label>
+            <span class="error-text" id="passwordError">Password must be at least 6 characters</span>
+          </div>
+
+          <div class="right-align">
+            <button type="submit" class="btn blue">Submit</button>
+            <button type="button" id="clearBtn" class="btn grey">Clear</button>
+          </div>
+
+          <div class="success-msg" id="successMsg"></div>
+        </form>
+      </div>
+    </main>
+
+    <footer class="page-footer teal darken-2">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Gadget Exchange</h5>
+            <p class="grey-text text-lighten-4">
+              A simple platform to exchange your old gadgets for something new. Built with Node.js and Materialize.
+            </p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#">Register</a></li>
+              <li><a class="grey-text text-lighten-3" href="#">Login</a></li>
+              <li><a class="grey-text text-lighten-3" href="#">Post Listing</a></li>
+              <li><a class="grey-text text-lighten-3" href="#">About</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container center-align white-text">
+        © 2025 GadgetX Exchange. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
