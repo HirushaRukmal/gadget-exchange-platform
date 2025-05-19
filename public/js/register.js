@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     registerForm.addEventListener("submit", function (e) {
         e.preventDefault();
         let valid = true;
-
+        // Get input fields and corresponding error/success message elements
         const username = document.getElementById("username");
         const email = document.getElementById("email");
         const password = document.getElementById("password");
