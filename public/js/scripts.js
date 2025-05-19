@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailInput = registrationForm.elements["email"];
     const passwordInput = registrationForm.elements["password"];
 
-    // Clear all previous errors helper spans first
+    // Clear all previous errors 
+    // helper spans first
     function clearErrors() {
         ["usernameError", "emailError", "passwordError"].forEach(id => {
             document.getElementById(id).textContent = "";
@@ -86,7 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Login form validation & submit
+    // Login form 
+    // validation & submit
     const form = document.getElementById("userForm");
     const email = document.getElementById("email");
     const password = document.getElementById("password");
