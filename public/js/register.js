@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordError.style.display = "none";
         successMsg.innerText = "";
 
-        //  Registration Validation
+        // Validate username: must not be empty or whitespace only
         if (!username.value.trim()) {
             usernameError.style.display = "block";
             valid = false;
