@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
             passwordError.style.display = "block";
             valid = false;
         }
-
+        // If all validations pass, display success message and reset the form
         if (valid) {
             successMsg.innerText = "Login successful!";
             loginForm.reset();
