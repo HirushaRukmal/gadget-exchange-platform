@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const passwordError = document.getElementById("passwordError");
         const successMsg = document.getElementById("successMsg");
 
-        // Reset error display
+        // Hide all previous error messages and clear the success messag
         usernameError.style.display = "none";
         emailError.style.display = "none";
         passwordError.style.display = "none";
