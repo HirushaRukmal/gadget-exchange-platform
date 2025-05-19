@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordError.style.display = "none";
         successMsg.innerText = "";
 
-        // Validation
+        //  Registration Validation
         if (!username.value.trim()) {
             usernameError.style.display = "block";
             valid = false;
