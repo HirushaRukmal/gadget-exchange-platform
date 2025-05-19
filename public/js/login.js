@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loginForm.addEventListener("submit", function (e) {
         e.preventDefault();
         let valid = true;
-       // Get form fields and message elements
+
+        // Get form fields and message elements
         const email = document.getElementById("email");
         const password = document.getElementById("password");
         const emailError = document.getElementById("emailError");
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         emailError.style.display = "none";
         passwordError.style.display = "none";
         successMsg.innerText = "";
+
         // Simple email pattern for validation
         const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
         if (!emailPattern.test(email.value)) {
@@ -28,8 +30,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (valid) {
-            successMsg.innerText = "Login successful!";
-            loginForm.reset();
+            fetch("/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email.value,
+                    password: password.value,
+                }),
+            })
+                .then((res) => {
+                    if (!res.ok) throw new Error("Login failed");
+                    return res.json();
+                })
+                .then((data) => {
+                    successMsg.innerText = data.message || "Login successful!";
+                    loginForm.reset();
+                    // Redirect after a short delay (optional)
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 1000); // 1 second delay
+                })
+                .catch((err) => {
+                    successMsg.innerText = "Login failed. Please try again.";
+                    console.error(err);
+                });
         }
     });
 

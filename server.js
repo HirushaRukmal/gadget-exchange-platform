@@ -65,6 +65,27 @@ app.get("/api/gadgets", async (req, res) => {
     }
 });
 
+const User = require('./models/User');
+
+app.post("/api/login", async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+
+        if (!user || user.password !== password) {
+            return res.status(401).json({ message: "Invalid credentials" });
+        }
+
+        // Simulate login success
+        res.json({ message: "Login successful!" });
+    } catch (err) {
+        console.error("Login error:", err);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+
 app.listen(port, () => {
     console.log(`App is running at http://localhost:${port}`);
 });
