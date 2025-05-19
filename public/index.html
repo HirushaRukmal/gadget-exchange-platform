@@ -8,7 +8,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
@@ -34,162 +37,25 @@
         </nav>
 
         <!-- Gadget Listing Section -->
+        <!-- Search Bar -->
         <div class="container">
-          <h4 class="center">Available Gadgets</h4>
-          <div class="row">
-            <div class="col s12 m6 l3">
-              <div class="card hoverable">
-                <div class="card-image">
-                  <img src="images/image 2.png" alt="Gadget" />
-                  <span class="card-title">iPhone X</span>
-                </div>
-                <div class="card-content">
-                  <p class="grey-text text-darken-2">Category: Mobile</p>
-                  <p class="red-text"><strong>$599</strong></p>
-                  <p>Excellent condition with charger. 64GB storage.</p>
-                </div>
-                <div class="card-action center-align">
-                  <a href="#!" class="btn-small teal">Buy Now</a>
-                </div>
-              </div>
-            </div>
+          <div class="input-field">
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search gadgets by name or category"
+            />
+          </div>
+        </div>
 
-            <div class="col s12 m6 l3">
-              <div class="card hoverable">
-                <div class="card-image">
-                  <img src="images/image.png" alt="Gadget" />
-                  <span class="card-title">Headset</span>
-                </div>
-                <div class="card-content">
-                  <p class="grey-text text-darken-2">Category: Tablet</p>
-                  <p class="red-text"><strong>$299</strong></p>
-                  <p>Like new. 10.1\" screen, includes stylus.</p>
-                </div>
-                <div class="card-action center-align">
-                  <a href="#!" class="btn-small teal">Buy Now</a>
-                </div>
-              </div>
-            </div>
+        <!-- Dynamic Gadget Listing -->
+        <div class="container">
+            <div class="row" id="gadgetContainer"></div>
+          </div>
 
-            <div class="col s12 m6 l3">
-              <div class="card hoverable">
-                <div class="card-image">
-                  <img src="images/image 1.png" alt="Gadget" />
-                  <span class="card-title">Earpods</span>
-                </div>
-                <div class="card-content">
-                  <p class="grey-text text-darken-2">Category: Tablet</p>
-                  <p class="red-text"><strong>$299</strong></p>
-                  <p>Like new. 10.1\" screen, includes stylus.</p>
-                </div>
-                <div class="card-action center-align">
-                  <a href="#!" class="btn-small teal">Buy Now</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col s12 m6 l3">
-              <div class="card hoverable">
-                <div class="card-image">
-                  <img src="images/image 3.png" alt="Gadget" />
-                  <span class="card-title">Iphone 16 pro</span>
-                </div>
-                <div class="card-content">
-                  <p class="grey-text text-darken-2">Category: Tablet</p>
-                  <p class="red-text"><strong>$299</strong></p>
-                  <p>Like new. 10.1\" screen, includes stylus.</p>
-                </div>
-                <div class="card-action center-align">
-                  <a href="#!" class="btn-small teal">Buy Now</a>
-                </div>
-              </div>
-            </div>
-
-            <!--row 2-->
-            <div class="col s12 m6 l3">
-              <div class="card hoverable">
-                <div class="card-image">
-                  <img src="images/image 6.png" alt="Gadget" />
-                  <span class="card-title">VR Headset</span>
-                </div>
-                <div class="card-content">
-                  <p class="grey-text text-darken-2">Category: Mobile</p>
-                  <p class="red-text"><strong>$599</strong></p>
-                  <p>Excellent condition with charger. 64GB storage.</p>
-                </div>
-                <div class="card-action center-align">
-                  <a href="#!" class="btn-small teal">Buy Now</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col s12 m6 l3">
-              <div class="card hoverable">
-                <div class="card-image">
-                  <img src="images/image 7.png" alt="Gadget" />
-                  <span class="card-title">PSP</span>
-                </div>
-                <div class="card-content">
-                  <p class="grey-text text-darken-2">Category: Tablet</p>
-                  <p class="red-text"><strong>$299</strong></p>
-                  <p>Like new. 10.1\" screen, includes stylus.</p>
-                </div>
-                <div class="card-action center-align">
-                  <a href="#!" class="btn-small teal">Buy Now</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col s12 m6 l3">
-              <div class="card hoverable">
-                <div class="card-image">
-                  <img src="images/image 5.png" alt="Gadget" />
-                  <span class="card-title">Nikon DSLR Camera</span>
-                </div>
-                <div class="card-content">
-                  <p class="grey-text text-darken-2">Category: Tablet</p>
-                  <p class="red-text"><strong>$299</strong></p>
-                  <p>Like new. 10.1\" screen, includes stylus.</p>
-                </div>
-                <div class="card-action center-align">
-                  <a href="#!" class="btn-small teal">Buy Now</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col s12 m6 l3">
-              <div class="card hoverable">
-                <div class="card-image">
-                  <img src="images/image 4.png" alt="Gadget" />
-                  <span class="card-title">LED Monitor</span>
-                </div>
-                <div class="card-content">
-                  <p class="grey-text text-darken-2">Category: Tablet</p>
-                  <p class="red-text"><strong>$299</strong></p>
-                  <p>Like new. 10.1\" screen, includes stylus.</p>
-                </div>
-                <div class="card-action center-align">
-                  <a href="#!" class="btn-small teal">Buy Now</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="center">
-              <ul class="pagination">
-                <li class="disabled">
-                  <a href="#!"><i class="material-icons">chevron_left</i></a>
-                </li>
-                <li class="active teal"><a href="#!">1</a></li>
-                <li class="waves-effect"><a href="#!">2</a></li>
-                <li class="waves-effect"><a href="#!">3</a></li>
-                <li class="waves-effect"><a href="#!">4</a></li>
-                <li class="waves-effect"><a href="#!">5</a></li>
-                <li class="waves-effect">
-                  <a href="#!"><i class="material-icons">chevron_right</i></a>
-                </li>
-              </ul>
-            </div>
+          <!-- Pagination -->
+          <div class="center">
+            <ul class="pagination" id="pagination"></ul>
           </div>
         </div>
       </main>

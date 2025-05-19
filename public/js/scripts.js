@@ -132,3 +132,312 @@ document.addEventListener("DOMContentLoaded", function () {
         successMsg.innerText = "";
     });
 });
+
+
+// const gadgets = [
+//     {
+//         title: 'iPhone X',
+//         category: 'Mobile',
+//         price: 599,
+//         description: 'Excellent condition with charger. 64GB storage.',
+//         image: 'images/image 2.png'
+//     },
+//     {
+//         title: 'Headset',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image.png'
+//     },
+//     {
+//         title: 'Earpods',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 1.png'
+//     },
+//     {
+//         title: 'iPhone 16 Pro',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 3.png'
+//     },
+//     {
+//         title: 'VR Headset',
+//         category: 'Mobile',
+//         price: 599,
+//         description: 'Excellent condition with charger. 64GB storage.',
+//         image: 'images/image 6.png'
+//     },
+//     {
+//         title: 'PSP',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 7.png'
+//     },
+//     {
+//         title: 'Nikon DSLR Camera',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 5.png'
+//     },
+//     {
+//         title: 'LED Monitor',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 4.png'
+//     },
+//     {
+//         title: 'LED Monitor',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 4.png'
+//     },
+//     {
+//         title: 'Earpods',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 1.png'
+//     },
+//     {
+//         title: 'iPhone 16 Pro',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 3.png'
+//     },
+//     {
+//         title: 'VR Headset',
+//         category: 'Mobile',
+//         price: 599,
+//         description: 'Excellent condition with charger. 64GB storage.',
+//         image: 'images/image 6.png'
+//     },
+//     {
+//         title: 'PSP',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 7.png'
+//     },
+//     {
+//         title: 'Nikon DSLR Camera',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 5.png'
+//     },
+//     {
+//         title: 'LED Monitor',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 4.png'
+//     },
+//     {
+//         title: 'Earpods',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 1.png'
+//     },
+//     {
+//         title: 'iPhone 16 Pro',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 3.png'
+//     },
+//     {
+//         title: 'VR Headset',
+//         category: 'Mobile',
+//         price: 599,
+//         description: 'Excellent condition with charger. 64GB storage.',
+//         image: 'images/image 6.png'
+//     },
+//     {
+//         title: 'PSP',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 7.png'
+//     },
+//     {
+//         title: 'Nikon DSLR Camera',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 5.png'
+//     },
+//     {
+//         title: 'LED Monitor',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 4.png'
+//     },
+//     {
+//         title: 'Earpods',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 1.png'
+//     },
+//     {
+//         title: 'iPhone 16 Pro',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 3.png'
+//     },
+//     {
+//         title: 'VR Headset',
+//         category: 'Mobile',
+//         price: 599,
+//         description: 'Excellent condition with charger. 64GB storage.',
+//         image: 'images/image 6.png'
+//     },
+//     {
+//         title: 'PSP',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 7.png'
+//     },
+//     {
+//         title: 'Nikon DSLR Camera',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 5.png'
+//     },
+//     {
+//         title: 'LED Monitor',
+//         category: 'Tablet',
+//         price: 299,
+//         description: 'Like new. 10.1" screen, includes stylus.',
+//         image: 'images/image 4.png'
+//     }
+// ];
+
+const itemsPerPage = 16;
+const itemsPerRow = 4;
+let currentPage = 1;
+let totalPages = 1;
+let searchQuery = '';
+
+const gadgetContainer = document.getElementById('gadgetContainer');
+const paginationContainer = document.getElementById('pagination');
+const searchInput = document.getElementById('searchInput');
+
+async function fetchGadgets(page = 1, search = '') {
+    const res = await fetch(`/api/gadgets?page=${page}&limit=${itemsPerPage}&search=${encodeURIComponent(search)}`);
+    const data = await res.json();
+    return data;
+}
+
+async function renderGadgets(page = 1, search = '') {
+    const data = await fetchGadgets(page, search);
+    const gadgetsToShow = data.gadgets;
+    totalPages = data.totalPages;
+    currentPage = data.page;
+
+    gadgetContainer.innerHTML = '';
+
+    for (let i = 0; i < gadgetsToShow.length; i += itemsPerRow) {
+        const rowDiv = document.createElement('div');
+        rowDiv.classList.add('row');
+
+        for (let j = i; j < i + itemsPerRow && j < gadgetsToShow.length; j++) {
+            const gadget = gadgetsToShow[j];
+            const colDiv = document.createElement('div');
+            colDiv.classList.add('col', 's12', 'm6', 'l3');
+            colDiv.innerHTML = `
+        <div class="card hoverable">
+          <div class="card-image">
+            <img src="${gadget.image}" alt="${gadget.title}" />
+            <span class="card-title">${gadget.title}</span>
+          </div>
+          <div class="card-content">
+            <p class="grey-text text-darken-2">Category: ${gadget.category}</p>
+            <p class="red-text"><strong>$${gadget.price}</strong></p>
+            <p>${gadget.description}</p>
+          </div>
+          <div class="card-action center-align">
+            <a href="#!" class="btn-small teal">Buy Now</a>
+          </div>
+        </div>
+      `;
+            rowDiv.appendChild(colDiv);
+        }
+
+        gadgetContainer.appendChild(rowDiv);
+    }
+
+    renderPagination();
+}
+
+function renderPagination() {
+    paginationContainer.innerHTML = '';
+
+    // Previous button
+    const prevLi = document.createElement('li');
+    prevLi.classList.add(currentPage === 1 ? 'disabled' : 'waves-effect');
+    prevLi.innerHTML = `<a href="#!"><i class="material-icons">chevron_left</i></a>`;
+    prevLi.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderGadgets(currentPage, searchQuery);
+        }
+    });
+    paginationContainer.appendChild(prevLi);
+
+    // Page numbers (max 5 pages at once)
+    const maxPagesToShow = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+    let endPage = startPage + maxPagesToShow - 1;
+
+    if (endPage > totalPages) {
+        endPage = totalPages;
+        startPage = Math.max(1, endPage - maxPagesToShow + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageLi = document.createElement('li');
+        pageLi.classList.add(i === currentPage ? 'active' : 'waves-effect');
+        if (i === currentPage) pageLi.classList.add('teal');
+        pageLi.innerHTML = `<a href="#!">${i}</a>`;
+        pageLi.addEventListener('click', () => {
+            currentPage = i;
+            renderGadgets(currentPage, searchQuery);
+        });
+        paginationContainer.appendChild(pageLi);
+    }
+
+    // Next button
+    const nextLi = document.createElement('li');
+    nextLi.classList.add(currentPage === totalPages ? 'disabled' : 'waves-effect');
+    nextLi.innerHTML = `<a href="#!"><i class="material-icons">chevron_right</i></a>`;
+    nextLi.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderGadgets(currentPage, searchQuery);
+        }
+    });
+    paginationContainer.appendChild(nextLi);
+}
+
+searchInput.addEventListener('input', () => {
+    searchQuery = searchInput.value.trim();
+    currentPage = 1;
+    renderGadgets(currentPage, searchQuery);
+});
+
+// Initial render
+renderGadgets(currentPage, searchQuery);
