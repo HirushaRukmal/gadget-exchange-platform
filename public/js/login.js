@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", function () {
     loginForm.addEventListener("submit", function (e) {
         e.preventDefault();
         let valid = true;
-
+       // Get form fields and message elements
         const email = document.getElementById("email");
         const password = document.getElementById("password");
         const emailError = document.getElementById("emailError");
         const passwordError = document.getElementById("passwordError");
         const successMsg = document.getElementById("successMsg");
 
-        // Reset messages
+        // Reset all messages
         emailError.style.display = "none";
         passwordError.style.display = "none";
         successMsg.innerText = "";
