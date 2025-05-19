@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             emailError.style.display = "block";
             valid = false;
         }
-
+        // Validate password presence and minimum length
         if (!password.value || password.value.length < 6) {
             passwordError.style.display = "block";
             valid = false;
