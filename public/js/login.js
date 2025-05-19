@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         emailError.style.display = "none";
         passwordError.style.display = "none";
         successMsg.innerText = "";
-
+        // Simple email pattern for validation
         const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
         if (!emailPattern.test(email.value)) {
             emailError.style.display = "block";
