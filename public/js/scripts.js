@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Display error message below specific input
+    // Display error message 
+    // below specific input
     function displayFieldError(fieldId, message) {
         const errorSpan = document.getElementById(fieldId);
         if (errorSpan) {
