@@ -1,53 +1,41 @@
-document.addEventListener("DOMContentLoaded", function () {
+// public/js/register.js
+document.addEventListener("DOMContentLoaded", () => {
     const registerForm = document.getElementById("registerForm");
 
-    registerForm.addEventListener("submit", function (e) {
+    registerForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        let valid = true;
 
-        const username = document.getElementById("username");
-        const email = document.getElementById("email");
-        const password = document.getElementById("password");
-
-        const usernameError = document.getElementById("usernameError");
-        const emailError = document.getElementById("emailError");
-        const passwordError = document.getElementById("passwordError");
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
         const successMsg = document.getElementById("successMsg");
 
-        // Reset error display
-        usernameError.style.display = "none";
-        emailError.style.display = "none";
-        passwordError.style.display = "none";
-        successMsg.innerText = "";
-
-        // Validation
-        if (!username.value.trim()) {
-            usernameError.style.display = "block";
-            valid = false;
+        // Simple front-end validation
+        if (!username || !email || !password) {
+            successMsg.textContent = "All fields are required.";
+            successMsg.style.color = "red";
+            return;
         }
 
-        const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
-        if (!emailPattern.test(email.value)) {
-            emailError.style.display = "block";
-            valid = false;
-        }
+        try {
+            const res = await fetch('/api/users/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            });
 
-        if (!password.value || password.value.length < 6) {
-            passwordError.style.display = "block";
-            valid = false;
-        }
-
-        if (valid) {
-            successMsg.innerText = "Registration successful!";
-            registerForm.reset();
+            const data = await res.json();
+            successMsg.textContent = data.message || data.error;
+            successMsg.style.color = res.ok ? "green" : "red";
+            if (res.ok) registerForm.reset();
+        } catch (err) {
+            successMsg.textContent = "Server error. Try again.";
+            successMsg.style.color = "red";
         }
     });
 
     document.getElementById("clearBtn").addEventListener("click", () => {
         registerForm.reset();
-        document.getElementById("usernameError").style.display = "none";
-        document.getElementById("emailError").style.display = "none";
-        document.getElementById("passwordError").style.display = "none";
-        document.getElementById("successMsg").innerText = "";
+        document.getElementById("successMsg").textContent = "";
     });
 });

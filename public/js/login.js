@@ -1,42 +1,43 @@
-document.addEventListener("DOMContentLoaded", function () {
+// public/js/login.js
+document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
 
-    loginForm.addEventListener("submit", function (e) {
+    loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        let valid = true;
 
-        const email = document.getElementById("email");
-        const password = document.getElementById("password");
-        const emailError = document.getElementById("emailError");
-        const passwordError = document.getElementById("passwordError");
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
         const successMsg = document.getElementById("successMsg");
 
-        // Reset messages
-        emailError.style.display = "none";
-        passwordError.style.display = "none";
-        successMsg.innerText = "";
-
-        const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
-        if (!emailPattern.test(email.value)) {
-            emailError.style.display = "block";
-            valid = false;
+        if (!email || !password) {
+            successMsg.textContent = "Please enter email and password.";
+            successMsg.style.color = "red";
+            return;
         }
 
-        if (!password.value || password.value.length < 6) {
-            passwordError.style.display = "block";
-            valid = false;
-        }
+        try {
+            const res = await fetch('/api/users/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
 
-        if (valid) {
-            successMsg.innerText = "Login successful!";
-            loginForm.reset();
+            const data = await res.json();
+            successMsg.textContent = data.message || data.error;
+            successMsg.style.color = res.ok ? "green" : "red";
+
+            if (res.ok) {
+                loginForm.reset();
+                // Redirect or perform login action
+            }
+        } catch (err) {
+            successMsg.textContent = "Server error. Try again.";
+            successMsg.style.color = "red";
         }
     });
 
     document.getElementById("clearBtn").addEventListener("click", () => {
         loginForm.reset();
-        document.getElementById("emailError").style.display = "none";
-        document.getElementById("passwordError").style.display = "none";
-        document.getElementById("successMsg").innerText = "";
+        document.getElementById("successMsg").textContent = "";
     });
 });
