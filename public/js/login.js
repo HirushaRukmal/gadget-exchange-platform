@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Redirect after a short delay (optional)
                     setTimeout(() => {
                         window.location.href = "index.html";
-                    }, 1000); // 1 second delay
+                    }, 500); // 0.5 second delay
                 })
                 .catch((err) => {
                     successMsg.innerText = "Login failed. Please try again.";
