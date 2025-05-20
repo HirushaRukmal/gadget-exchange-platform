@@ -1,0 +1,76 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+nav {
+  margin-bottom: 0;
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 64px); /* Adjust height minus navbar */
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #ddd;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 10px;
+}
+
+.admin-sidebar li {
+  margin-bottom: 20px;
+}
+
+.admin-sidebar a {
+  color: white;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15px;
+}
+.admin-sidebar a:hover {
+  color: #1dc339;
+}
+
+.sidebar-desc {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Main content */
+.admin-main {
+  padding: 20px;
+  flex-grow: 1;
+  background: #fff;
+}
+
+.admin-main h4 {
+  margin-bottom: 20px;
+}
+
+.brand-logo {
+  margin-left: 20px;
+}
+
+.createUserBtn {
+  float: right;
+  margin-right: 20px;
+}

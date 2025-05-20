@@ -38,8 +38,35 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (valid) {
-            successMsg.innerText = "Registration successful!";
-            registerForm.reset();
+            fetch("/api/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username.value.trim(),
+                    email: email.value.trim(),
+                    password: password.value
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to register user");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    successMsg.innerText = "Registration successful!";
+                    registerForm.reset();
+                    setTimeout(() => {
+                        window.location.href = "login.html";// Redirect to the main page after successful login
+                    }, 500);// 500ms delay before redirecting
+                })
+                .catch(error => {
+                    console.error("Error during registration:", error);
+                    successMsg.innerText = "Registration failed. Try again.";
+                    successMsg.style.color = "red";
+                });
         }
     });
 

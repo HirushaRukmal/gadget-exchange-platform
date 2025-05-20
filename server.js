@@ -85,6 +85,59 @@ app.post("/api/login", async (req, res) => {
     }
 });
 
+app.get("/api/users", async (req, res) => {
+    try {
+        const users = await User.find({}, "username email"); // select only username and email
+        res.json(users);
+    } catch (err) {
+        console.error("Error fetching users:", err);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+app.delete("/api/users/:id", async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.json({ message: "User deleted" });
+    } catch (err) {
+        console.error("Delete error:", err);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+app.put("/api/users/:id", async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+        const updateData = { username, email };
+        if (password) updateData.password = password;
+
+        await User.findByIdAndUpdate(req.params.id, updateData);
+        res.json({ message: "User updated" });
+    } catch (err) {
+        console.error("Update error:", err);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+app.post("/api/users", async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+
+        // Prevent duplicate email
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(409).json({ message: "Email already exists" });
+        }
+
+        const newUser = new User({ username, email, password });
+        await newUser.save();
+        res.status(201).json({ message: "User created" });
+    } catch (err) {
+        console.error("Create error:", err);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`App is running at http://localhost:${port}`);
