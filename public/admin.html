@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <!-- Top Navigation Bar -->
+      <nav class="teal darken-2">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">GadgetX Admin Panel</a>
+        </div>
+      </nav>
+
+      <div class="main-content-wrapper">
+        <!-- Left Sidebar Navigation -->
+        <div class="admin-sidebar teal darken-2">
+          <ul>
+            <li>
+              <a href="admin.html" class="btn-flat waves-effect waves-teal"
+                >Manage Users</a
+              >
+            </li>
+            <li>
+              <a href="#" class="btn-flat waves-effect waves-teal"
+                >Manage Products</a
+              >
+            </li>
+            <li>
+              <a href="#" class="btn-flat waves-effect waves-teal"
+                >View Reports</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right Main Content Area -->
+        <div class="admin-main">
+          <h4>
+            Manage Users
+            <button
+              class="btn-small teal darken-1 createUserBtn"
+              id="createUserBtn"
+            >
+              Create User
+            </button>
+          </h4>
+
+          <!-- Create User Modal -->
+          <div id="createUserModal" class="modal">
+            <div class="modal-content">
+              <h5>Create User</h5>
+              <form id="userCreateForm">
+                <div class="input-field">
+                  <input
+                    id="createUsername"
+                    type="text"
+                    name="username"
+                    required
+                  />
+                  <label for="createUsername">Username</label>
+                </div>
+                <div class="input-field">
+                  <input id="createEmail" type="email" name="email" required />
+                  <label for="createEmail">Email</label>
+                </div>
+                <div class="input-field">
+                  <input
+                    id="createPassword"
+                    type="password"
+                    name="password"
+                    required
+                  />
+                  <label for="createPassword">Password</label>
+                </div>
+                <button class="btn teal" type="submit">Create</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Edit User Modal -->
+          <div id="editUserModal" class="modal">
+            <div class="modal-content">
+              <h5>Edit User</h5>
+              <form id="userEditForm">
+                <div class="input-field">
+                  <input
+                    id="editUsername"
+                    name="username"
+                    type="text"
+                    required
+                  />
+                  <label for="editUsername">Username</label>
+                </div>
+                <div class="input-field">
+                  <input id="editEmail" name="email" type="email" required />
+                  <label for="editEmail">Email</label>
+                </div>
+                <div class="input-field">
+                  <input id="editPassword" name="password" type="password" />
+                  <label for="editPassword"
+                    >Password (leave blank to keep unchanged)</label
+                  >
+                </div>
+                <input type="hidden" id="editUserId" />
+                <button class="btn teal" type="submit">Save</button>
+              </form>
+            </div>
+          </div>
+
+          <table class="striped">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              <!-- Filled dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>
