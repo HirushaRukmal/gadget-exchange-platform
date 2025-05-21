@@ -9,3 +9,4 @@ const gadgetSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Gadget", gadgetSchema);
+

@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
 const Gadget = require('./models/Gadget.js');
+const router = express.Router();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -51,8 +52,23 @@ app.post("/api/login", async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`App is running at http://localhost:${port}`);
+
+app.get('/search', async (req, res) => {
+  const { name, category, location } = req.query;
+
+  // Build query object dynamically
+  const query = {};
+  if (name) query.name = { $regex: name, $options: 'i' };
+  if (category) query.category = category;
+  if (location) query.location = location;
+
+  try {
+    const results = await Gadget.find(query);
+    res.json(results);
+  } catch (error) {
+    console.error("Search error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 // listings with filters
@@ -79,3 +95,22 @@ app.get('/api/gadgets', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// Logout with sessions
+
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return res.status(500).send('Logout failed.');
+    }
+    res.clearCookie('connect.sid');
+    res.redirect('/logout'); // or your home page
+  });
+});
+
+
+app.listen(port, () => {
+    console.log(`App is running at http://localhost:${port}`);
+});
+
