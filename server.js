@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
-const Gadget = require('./models/Gadget');
+const Gadget = require('./models/Gadget.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
