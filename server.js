@@ -132,6 +132,32 @@ app.get('/api/gadgets', async (req, res) => {
   }
 });
 
+// View Profile Page
+app.get('/profile', async (req, res) => {
+  if (!req.session.userId) return res.redirect('/login');
+  const user = await User.findById(req.session.userId);
+  res.sendFile(path.join(__dirname, 'public/profile.html'));
+});
+
+// Get Profile Data (for AJAX)
+app.get('/api/profile', async (req, res) => {
+  if (!req.session.userId) return res.status(401).json({ error: 'Not logged in' });
+  const user = await User.findById(req.session.userId);
+  res.json(user);
+});
+
+// Update Profile
+app.post('/api/profile/update', async (req, res) => {
+  if (!req.session.userId) return res.status(401).json({ error: 'Not logged in' });
+
+  const { name, bio, email } = req.body;
+
+  await User.findByIdAndUpdate(req.session.userId, { name, bio, email });
+  res.json({ success: true });
+});
+
+
+
 app.listen(port, () => {
     console.log(`App is running at http://localhost:${port}`);
 });
