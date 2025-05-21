@@ -360,8 +360,8 @@ async function renderGadgets(page = 1, search = '') {
             colDiv.classList.add('col', 's12', 'm6', 'l3');
             colDiv.innerHTML = `
         <div class="card hoverable">
-          <div class="card-image">
-            <img src="${gadget.image}" alt="${gadget.title}" />
+          <div class="card-image"><br/>
+            <img src="/uploads/${gadget.image}" alt="${gadget.title}" />
             <span class="card-title">${gadget.title}</span>
           </div>
           <div class="card-content">

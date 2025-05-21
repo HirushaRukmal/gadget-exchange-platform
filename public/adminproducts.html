@@ -29,7 +29,9 @@
               >
             </li>
             <li>
-              <a href="adminproducts.html" class="btn-flat waves-effect waves-teal"
+              <a
+                href="adminproducts.html"
+                class="btn-flat waves-effect waves-teal"
                 >Manage Products</a
               >
             </li>
@@ -44,70 +46,97 @@
         <!-- Right Main Content Area -->
         <div class="admin-main">
           <h4>
-            Manage Users
+            Manage Products
             <button
               class="btn-small teal darken-1 createUserBtn"
               id="createUserBtn"
             >
-              Create User
+              Create Product
             </button>
           </h4>
 
-          <!-- Create User Modal -->
+          <!-- Create Product Modal -->
           <div id="createUserModal" class="modal">
             <div class="modal-content">
-              <h5>Create User</h5>
+              <h5>Create Product</h5>
               <form id="userCreateForm">
                 <div class="input-field">
+                  <input id="createTitle" type="text" name="title" required />
+                  <label for="createTitle">Title</label>
+                </div>
+                <div class="input-field">
                   <input
-                    id="createUsername"
+                    id="createCategory"
                     type="text"
-                    name="username"
+                    name="category"
                     required
                   />
-                  <label for="createUsername">Username</label>
-                </div>
-                <div class="input-field">
-                  <input id="createEmail" type="email" name="email" required />
-                  <label for="createEmail">Email</label>
+                  <label for="createCategory">Category</label>
                 </div>
                 <div class="input-field">
                   <input
-                    id="createPassword"
-                    type="password"
-                    name="password"
+                    id="createPrice"
+                    type="number"
+                    step="0.01"
+                    name="price"
                     required
                   />
-                  <label for="createPassword">Password</label>
+                  <label for="createPrice">Price</label>
                 </div>
+                <div class="input-field">
+                  <textarea
+                    id="createDescription"
+                    class="materialize-textarea"
+                    name="description"
+                    required
+                  ></textarea>
+                  <label for="createDescription">Description</label>
+                </div>
+                <div class="input-field">
+                  <input type="file" name="image" accept="image/*" />
+                </div>
+                
                 <button class="btn teal" type="submit">Create</button>
               </form>
             </div>
           </div>
 
-          <!-- Edit User Modal -->
+          <!-- Edit Product Modal -->
           <div id="editUserModal" class="modal">
             <div class="modal-content">
-              <h5>Edit User</h5>
+              <h5>Edit Product</h5>
               <form id="userEditForm">
                 <div class="input-field">
+                  <input id="editTitle" type="text" name="title" required />
+                  <label for="editTitle">Title</label>
+                </div>
+                <div class="input-field">
                   <input
-                    id="editUsername"
-                    name="username"
+                    id="editCategory"
                     type="text"
+                    name="category"
                     required
                   />
-                  <label for="editUsername">Username</label>
+                  <label for="editCategory">Category</label>
                 </div>
                 <div class="input-field">
-                  <input id="editEmail" name="email" type="email" required />
-                  <label for="editEmail">Email</label>
+                  <input
+                    id="editPrice"
+                    type="number"
+                    step="0.01"
+                    name="price"
+                    required
+                  />
+                  <label for="editPrice">Price</label>
                 </div>
                 <div class="input-field">
-                  <input id="editPassword" name="password" type="password" />
-                  <label for="editPassword"
-                    >Password (leave blank to keep unchanged)</label
-                  >
+                  <textarea
+                    id="editDescription"
+                    class="materialize-textarea"
+                    name="description"
+                    required
+                  ></textarea>
+                  <label for="editDescription">Description</label>
                 </div>
                 <input type="hidden" id="editUserId" />
                 <button class="btn teal" type="submit">Save</button>
@@ -118,8 +147,11 @@
           <table class="striped">
             <thead>
               <tr>
-                <th>Username</th>
-                <th>Email</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Image</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -132,6 +164,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/admin.js"></script>
+    <script src="js/adminproduct.js"></script>
   </body>
 </html>

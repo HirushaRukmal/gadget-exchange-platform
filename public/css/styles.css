@@ -27,3 +27,18 @@ footer {
   height: 300px;
   object-fit: cover;
 }
+
+.card-title {
+  background-color: rgba(0, 0, 0, 0.5); /* black with 50% opacity */
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.card-title {
+  color: white !important;
+  text-shadow: 1px 1px 2px black;
+}
+
+.card-title {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
