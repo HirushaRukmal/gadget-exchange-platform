@@ -109,6 +109,28 @@ router.get('/logout', (req, res) => {
   });
 });
 
+app.get('/api/gadgets', async (req, res) => {
+  const { brand, category, condition, minPrice, maxPrice } = req.query;
+
+  const filter = {};
+
+  if (brand) filter.brand = new RegExp(brand, 'i');
+  if (category) filter.category = new RegExp(category, 'i');
+  if (condition) filter.condition = condition;
+  if (minPrice || maxPrice) {
+    filter.price = {};
+    if (minPrice) filter.price.$gte = parseFloat(minPrice);
+    if (maxPrice) filter.price.$lte = parseFloat(maxPrice);
+  }
+
+  try {
+    const gadgets = await Gadget.find(filter);
+    res.json(gadgets);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 app.listen(port, () => {
     console.log(`App is running at http://localhost:${port}`);

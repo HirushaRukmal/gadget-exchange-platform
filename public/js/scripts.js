@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     var modals = document.querySelectorAll(".modal");
     M.Modal.init(modals);
-
+    
+    
     // Listing form
     const listingForm = document.getElementById("listing-form");
     listingForm.addEventListener("submit", function (e) {
@@ -131,6 +132,50 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordError.style.display = "none";
         successMsg.innerText = "";
     });
+    
+    //filter feature 
+    //need to be fixed
+    
+    
+document.getElementById('filterForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const brand = document.getElementById('brand').value;
+  const category = document.getElementById('category').value;
+  const condition = document.getElementById('condition').value;
+  const minPrice = document.getElementById('minPrice').value;
+  const maxPrice = document.getElementById('maxPrice').value;
+
+  const queryParams = new URLSearchParams({
+    brand,
+    category,
+    condition,
+    minPrice,
+    maxPrice
+  });
+
+  const response = await fetch(`/api/gadgets?${queryParams}`);
+  const gadgets = await response.json();
+
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = '';
+
+  if (gadgets.length === 0) {
+    resultsDiv.innerHTML = '<p>No gadgets found.</p>';
+  } else {
+    gadgets.forEach(gadget => {
+      resultsDiv.innerHTML += `
+        <div class="card-panel">
+          <strong>${gadget.name}</strong> - ${gadget.brand} - $${gadget.price}<br/>
+          ${gadget.category} - ${gadget.condition}
+        </div>
+      `;
+    });
+  }
+});
+
+
+
 });
 
 
