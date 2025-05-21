@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
+const Gadget = require('./models/Gadget');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -141,4 +142,29 @@ app.post("/api/users", async (req, res) => {
 
 app.listen(port, () => {
     console.log(`App is running at http://localhost:${port}`);
+});
+
+// listings with filters
+
+app.get('/api/gadgets', async (req, res) => {
+  const { brand, category, condition, location, minPrice, maxPrice } = req.query;
+
+  const filter = {};
+  if (brand) filter.brand = new RegExp(brand, 'i');
+  if (category) filter.category = new RegExp(category, 'i');
+  if (condition) filter.condition = condition;
+  if (location) filter.location = new RegExp(location, 'i');
+  if (minPrice || maxPrice) {
+    filter.price = {};
+    if (minPrice) filter.price.$gte = Number(minPrice);
+    if (maxPrice) filter.price.$lte = Number(maxPrice);
+  }
+
+  try {
+    const gadgets = await Gadget.find(filter);
+    res.json(gadgets);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
 });
