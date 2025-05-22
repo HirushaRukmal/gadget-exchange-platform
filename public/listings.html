@@ -1,0 +1,98 @@
+<!-- public/listings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gadget Listings</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h4 class="center-align">Gadget Listings</h4>
+
+    <!-- Filter Form -->
+    <form id="filterForm" class="row">
+      <div class="input-field col s6 m3">
+        <input id="brand" type="text" name="brand">
+        <label for="brand">Brand</label>
+      </div>
+
+      <div class="input-field col s6 m3">
+        <input id="category" type="text" name="category">
+        <label for="category">Category</label>
+      </div>
+
+      <div class="input-field col s6 m3">
+        <select id="condition" name="condition">
+          <option value="" selected>Any</option>
+          <option value="New">New</option>
+          <option value="Used">Used</option>
+        </select>
+        <label for="condition">Condition</label>
+      </div>
+
+      <div class="input-field col s6 m3">
+        <input id="location" type="text" name="location">
+        <label for="location">Location</label>
+      </div>
+
+      <div class="input-field col s6 m3">
+        <input id="minPrice" type="number" name="minPrice">
+        <label for="minPrice">Min Price</label>
+      </div>
+
+      <div class="input-field col s6 m3">
+        <input id="maxPrice" type="number" name="maxPrice">
+        <label for="maxPrice">Max Price</label>
+      </div>
+
+      <div class="col s12 center-align">
+        <button class="btn waves-effect" type="submit">Apply Filters</button>
+      </div>
+    </form>
+
+    <!-- Listing Area -->
+    <div class="row" id="gadgetList"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      M.AutoInit();
+
+      const form = document.getElementById('filterForm');
+      const list = document.getElementById('gadgetList');
+
+      function fetchGadgets(params = '') {
+        fetch(`/api/gadgets${params}`)
+          .then(res => res.json())
+          .then(data => {
+            list.innerHTML = data.map(gadget => `
+              <div class="col s12 m6 l4">
+                <div class="card">
+                  <div class="card-content">
+                    <span class="card-title">${gadget.name}</span>
+                    <p><strong>Brand:</strong> ${gadget.brand}</p>
+                    <p><strong>Category:</strong> ${gadget.category}</p>
+                    <p><strong>Condition:</strong> ${gadget.condition}</p>
+                    <p><strong>Price:</strong> $${gadget.price}</p>
+                    <p><strong>Location:</strong> ${gadget.location}</p>
+                  </div>
+                </div>
+              </div>
+            `).join('');
+          });
+      }
+
+      fetchGadgets(); // initial load
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData).toString();
+        fetchGadgets(`?${params}`);
+      });
+    });
+  </script>
+</body>
+</html>

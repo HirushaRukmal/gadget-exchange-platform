@@ -4,6 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
+const Gadget = require('./models/Gadget.js');
+const router = express.Router();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -50,6 +52,113 @@ app.post("/api/login", async (req, res) => {
     }
 });
 
+
+app.get('/search', async (req, res) => {
+  const { name, category, location } = req.query;
+
+  // Build query object dynamically
+  const query = {};
+  if (name) query.name = { $regex: name, $options: 'i' };
+  if (category) query.category = category;
+  if (location) query.location = location;
+
+  try {
+    const results = await Gadget.find(query);
+    res.json(results);
+  } catch (error) {
+    console.error("Search error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// listings with filters
+
+app.get('/api/gadgets', async (req, res) => {
+  const { brand, category, condition, location, minPrice, maxPrice } = req.query;
+
+  const filter = {};
+  if (brand) filter.brand = new RegExp(brand, 'i');
+  if (category) filter.category = new RegExp(category, 'i');
+  if (condition) filter.condition = condition;
+  if (location) filter.location = new RegExp(location, 'i');
+  if (minPrice || maxPrice) {
+    filter.price = {};
+    if (minPrice) filter.price.$gte = Number(minPrice);
+    if (maxPrice) filter.price.$lte = Number(maxPrice);
+  }
+
+  try {
+    const gadgets = await Gadget.find(filter);
+    res.json(gadgets);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+// Logout with sessions
+
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return res.status(500).send('Logout failed.');
+    }
+    res.clearCookie('connect.sid');
+    res.redirect('/logout'); // or your home page
+  });
+});
+
+app.get('/api/gadgets', async (req, res) => {
+  const { brand, category, condition, minPrice, maxPrice } = req.query;
+
+  const filter = {};
+
+  if (brand) filter.brand = new RegExp(brand, 'i');
+  if (category) filter.category = new RegExp(category, 'i');
+  if (condition) filter.condition = condition;
+  if (minPrice || maxPrice) {
+    filter.price = {};
+    if (minPrice) filter.price.$gte = parseFloat(minPrice);
+    if (maxPrice) filter.price.$lte = parseFloat(maxPrice);
+  }
+
+  try {
+    const gadgets = await Gadget.find(filter);
+    res.json(gadgets);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// View Profile Page
+app.get('/profile', async (req, res) => {
+  if (!req.session.userId) return res.redirect('/login');
+  const user = await User.findById(req.session.userId);
+  res.sendFile(path.join(__dirname, 'public/profile.html'));
+});
+
+// Get Profile Data (for AJAX)
+app.get('/api/profile', async (req, res) => {
+  if (!req.session.userId) return res.status(401).json({ error: 'Not logged in' });
+  const user = await User.findById(req.session.userId);
+  res.json(user);
+});
+
+// Update Profile
+app.post('/api/profile/update', async (req, res) => {
+  if (!req.session.userId) return res.status(401).json({ error: 'Not logged in' });
+
+  const { name, bio, email } = req.body;
+
+  await User.findByIdAndUpdate(req.session.userId, { name, bio, email });
+  res.json({ success: true });
+});
+
+
+
 app.listen(port, () => {
     console.log(`App is running at http://localhost:${port}`);
 });
+

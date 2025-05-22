@@ -72,4 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("passwordError").style.display = "none";
         document.getElementById("successMsg").innerText = "";
     });
+    
+
+
 });
