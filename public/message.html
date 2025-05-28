@@ -36,15 +36,21 @@
                     <label for="name">Your Name:</label>
                     <input type="text" id="name" name="name" required />
 
-                    <label for="description">Message Description:</label>
-                    <textarea id="description" name="description" required></textarea>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required />
+
+                    <label for="message">Message Description:</label>
+                    <textarea id="message" name="message" required></textarea>
 
                     <div class="buttons">
                         <button type="submit" class="waves-effect waves-light btn">Submit</button>
-                        <button type="button" class="waves-effect waves-light btn" onclick="history.back()">Back</button>
+                        <button type="button" class="waves-effect waves-light btn"
+                            onclick="history.back()">Back</button>
                     </div>
-                    <div id="confirmationMessage" style="margin-top: 20px; color: green; font-weight: bold;"></div>
+
+                    <div id="confirmationMessage" style="margin-top: 20px; font-weight: bold;"></div>
                 </form>
+
             </div>
     </div>
     </main>
