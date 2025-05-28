@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+  <div class="site-wrapper">
+    <!-- Top Navigation Bar -->
+    <nav class="teal darken-2">
+      <div class="nav-wrapper">
+        <a href="" class="brand-logo">GadgetX Admin Panel</a>
+        <div class="right-align">
+          <a href="login.html"  style="color: white; background-color: red; margin-right: 10px;"class="btn-flat waves-effect waves-teal">Logout</a>
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="main-content-wrapper">
+      <!-- Left Sidebar Navigation -->
+      <div class="admin-sidebar teal darken-2">
+        <ul>
+          <li>
+            <a href="admin.html" class="btn-flat waves-effect waves-teal">Manage Users</a>
+          </li>
+          <li>
+            <a href="adminproducts.html" class="btn-flat waves-effect waves-teal">Manage Products</a>
+          </li>
+          <li>
+            <a href="reports.html" class="btn-flat waves-effect waves-teal">View Reports</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Main Content Area -->
+      <div class="container">
+    <h4 class="center-align">Database Reports</h4>
+
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card teal lighten-5">
+          <div class="card-content">
+            <span class="card-title teal-text text-darken-4">Total Users</span>
+            <h5 id="userCount">Loading...</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12 m6">
+        <div class="card teal lighten-5">
+          <div class="card-content">
+            <span class="card-title teal-text text-darken-4">Total Products</span>
+            <h5 id="productCount">Loading...</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/reports.js"></script>
+</body>
+
+</html>

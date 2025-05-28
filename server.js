@@ -26,11 +26,13 @@ app.get("/", (req, res) => {
 const userRoutes = require("./routes/user");
 const gadgetRoutes = require("./routes/gadgets");
 const messageRoutes = require("./routes/message");
+const reportRoutes = require('./routes/reports');
 
 app.use("/api/users", userRoutes);
 app.use("/api/gadgets", gadgetRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use("/api/owner-message", messageRoutes);
+app.use("/api/reports", reportRoutes);
 
 const User = require('./models/User');
 
