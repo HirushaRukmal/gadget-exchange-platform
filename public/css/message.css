@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+}
+.container1 {
+  height: 820px;
+  width: 100%;
+}
+form {
+  width: 800px;
+  margin-left: 30%;
+}
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+label {
+  display: block;
+  margin-top: 15px;
+}
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+button {
+  margin-top: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.buttons {
+  margin-top: 20px;
+}
+.buttons button {
+  margin-right: 10px;
+}

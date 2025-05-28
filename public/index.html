@@ -1,102 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gadget Exchange</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
-    <div class="site-wrapper">
-      <!-- Main content area -->
-      <main class="site-content">
-        <nav class="teal darken-2">
-          <div class="nav-wrapper container">
-            <a href="index.html" class="brand-logo">GadgetX</a>
-            <ul class="right">
-              <li>
-                <a href="register.html" class="waves-effect waves-light btn"
-                  >Register</a
-                >
-              </li>
-              <li>
-                <a href="login.html" class="waves-effect waves-light btn"
-                  >Login</a
-                >
-              </li>
-            </ul>
-          </div>
-        </nav>
 
-        <!-- Gadget Listing Section -->
-        <!-- Search Bar -->
-        <div class="container">
-          <div class="input-field">
-            <input
-              id="searchInput"
-              type="text"
-              placeholder="Search gadgets by name or category"
-            />
-          </div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gadget Exchange</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 
-        <!-- Dynamic Gadget Listing -->
-        <div class="container">
-            <div class="row" id="gadgetContainer"></div>
-          </div>
+<body>
+  <div class="site-wrapper">
+    <!-- Main content area -->
+    <main class="site-content">
+      <nav class="teal darken-2">
+        <div class="nav-wrapper container">
+          <a href="index.html" class="brand-logo">GadgetX</a>
+          <ul class="right">
+            <li>
+              <a href="register.html" class="waves-effect waves-light btn">Register</a>
+            </li>
+            <li>
+              <a href="login.html" id="loginLogoutBtn" class="waves-effect waves-light btn">Login</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-          <!-- Pagination -->
-          <div class="center">
-            <ul class="pagination" id="pagination"></ul>
-          </div>
-        </div>
-      </main>
+      <!-- Gadget Listing Section -->
+      <!-- Search Bar -->
+      <div class="container">
+        <div class="input-field">
+          <input id="searchInput" type="text" placeholder="Search gadgets by name or category" />
+        </div><a href="addgadget.html" class="btn btn-primary">Add Gadget</a><br><br>
+      </div>
 
-      <!-- Footer Section -->
-      <footer class="page-footer teal darken-2">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Gadget Exchange</h5>
-              <p class="grey-text text-lighten-4">
-                A simple platform to exchange your old gadgets for something
-                new. Built with Node.js and Materialize.
-              </p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Links</h5>
-              <ul>
-                <li>
-                  <a class="grey-text text-lighten-3" href="#">Register</a>
-                </li>
-                <li><a class="grey-text text-lighten-3" href="#">Login</a></li>
-                <li>
-                  <a class="grey-text text-lighten-3" href="#">Post Listing</a>
-                </li>
-                <li><a class="grey-text text-lighten-3" href="#">About</a></li>
-              </ul>
-            </div>
-          </div>
+
+
+
+      <!-- Dynamic Gadget Listing -->
+      <div class="container">
+        <div class="row" id="gadgetContainer"></div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="center">
+        <ul class="pagination" id="pagination"></ul>
+      </div>
+  </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="page-footer teal darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Gadget Exchange</h5>
+          <p class="grey-text text-lighten-4">
+            A simple platform to exchange your old gadgets for something
+            new. Built with Node.js and Materialize.
+          </p>
         </div>
-        <div class="footer-copyright">
-          <div class="container center-align">
-            © 2025 GadgetX Exchange. All rights reserved.
-          </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li>
+              <a class="grey-text text-lighten-3" href="#">Register</a>
+            </li>
+            <li><a class="grey-text text-lighten-3" href="#">Login</a></li>
+            <li>
+              <a class="grey-text text-lighten-3" href="#">Post Listing</a>
+            </li>
+            <li><a class="grey-text text-lighten-3" href="#">About</a></li>
+          </ul>
         </div>
-      </footer>
+      </div>
     </div>
+    <div class="footer-copyright">
+      <div class="container center-align">
+        © 2025 GadgetX Exchange. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  </div>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/scripts.js"></script>
-  </body>
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+
 </html>

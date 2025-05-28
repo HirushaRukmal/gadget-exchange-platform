@@ -24,6 +24,27 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+router.post('/', upload.single('image'), async (req, res) => {
+    try {
+        const { title, category, price, description } = req.body;
+        const image = req.file ? req.file.buffer.toString('base64') : null;
+
+        const newGadget = new Gadget({
+            title,
+            category,
+            price: parseFloat(price),
+            description,
+            image
+        });
+
+        await newGadget.save();
+        res.status(201).json({ message: 'Gadget created successfully', gadget: newGadget });
+    } catch (err) {
+        console.error('Error adding gadget:', err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 // Create
 router.post("/", upload.single("image"), async (req, res) => {
     try {

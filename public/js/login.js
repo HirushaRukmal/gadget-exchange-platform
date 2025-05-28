@@ -53,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     return res.json();
                 })
                 .then((data) => {
-                    successMsg.innerText = data.message || "Login successful!";
+                    if (successMsg) successMsg.innerText = data.message || "Form submitted successfully!";
+                    localStorage.setItem("loggedIn", "true");  // set loggedIn flag
                     loginForm.reset();
                     setTimeout(() => {
                         window.location.href = "index.html";
