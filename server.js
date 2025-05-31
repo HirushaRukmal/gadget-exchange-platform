@@ -71,6 +71,19 @@ app.get('/search', async (req, res) => {
   }
 });
 
+//view listing
+
+app.get('/api/gadgets/:id', async (req, res) => {
+  try {
+    const gadget = await Gadget.findById(req.params.id);
+    if (!gadget) return res.status(404).json({ error: 'Gadget not found' });
+    res.json(gadget);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+
 // listings with filters
 
 app.get('/api/gadgets', async (req, res) => {

@@ -222,7 +222,7 @@ async function renderGadgets(page = 1, search = '') {
             <p>${gadget.description}</p>
           </div>
           <div class="card-action center-align">
-            <a href="#!" class="btn-small teal">Buy Now</a>
+            <a href="gadget-details.html?id=${gadget._id}" class="btn-small teal">Buy Now</a>
           </div>
         </div>
       `;
