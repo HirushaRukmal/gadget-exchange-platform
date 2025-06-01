@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gadget Details</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    .main-content {
+      margin-top: 50px;
+    }
+    footer.page-footer {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar (Same Theme) -->
+  <nav class="teal">
+    <div class="nav-wrapper container">
+      <a href="index.html" class="brand-logo">Gadget Exchange</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ✅ Main Content -->
+  <div class="container main-content">
+    <h4 class="center-align">Gadget Details</h4>
+    <div id="gadget-details" class="card-panel z-depth-2"></div>
+  </div>
+
+  <!-- ✅ Footer -->
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Gadget Exchange</h5>
+          <p class="grey-text text-lighten-4">A place to buy, sell, or trade gadgets easily.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="index.html">Home</a></li>
+            <li><a class="grey-text text-lighten-3" href="login.html">Login</a></li>
+            <li><a class="grey-text text-lighten-3" href="register.html">Register</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container center-align">
+        © 2025 Gadget Exchange Platform
+      </div>
+    </div>
+  </footer>
+
+  <!-- ✅ JS to Load Gadget -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const gadgetId = urlParams.get("id");
+
+    fetch(`/api/gadgets/${gadgetId}`)
+      .then(res => res.json())
+      .then(gadget => {
+        document.getElementById("gadget-details").innerHTML = `
+          <h5>${gadget.title}</h5>
+          <img src="/uploads/${gadget.image}" alt="${gadget.title}" class="responsive-img" style="max-width: 300px;">
+          <p><strong>Category:</strong> ${gadget.category}</p>
+          <p><strong>Condition:</strong> ${gadget.condition || 'N/A'}</p>
+          <p><strong>Price:</strong> $${gadget.price}</p>
+          <p><strong>Description:</strong> ${gadget.description}</p>
+        `;
+      })
+      .catch(() => {
+        document.getElementById("gadget-details").innerText = "Failed to load gadget details.";
+      });
+  </script>
+
+</body>
+</html>
