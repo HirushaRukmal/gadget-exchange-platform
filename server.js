@@ -6,6 +6,9 @@ const path = require("path");
 const mongoose = require("mongoose");
 const Gadget = require('./models/Gadget.js');
 const router = express.Router();
+const session = require('express-session');
+
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,10 +18,21 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.error("MongoDB connection error:", err));
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000', // or your frontend origin
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }  // true only if using HTTPS
+}));
+
 
 // Routes
 app.get("/", (req, res) => {
@@ -27,6 +41,7 @@ app.get("/", (req, res) => {
 
 const userRoutes = require("./routes/user");
 const gadgetRoutes = require("./routes/gadgets");
+const Wishlist = require('./models/Wishlist');
 
 app.use("/api/users", userRoutes);
 app.use("/api/gadgets", gadgetRoutes);
@@ -45,6 +60,7 @@ app.post("/api/login", async (req, res) => {
         }
 
         // Simulate login success
+        req.session.userId = user._id;
         res.json({ message: "Login successful!" });
     } catch (err) {
         console.error("Login error:", err);
@@ -168,6 +184,68 @@ app.post('/api/profile/update', async (req, res) => {
   await User.findByIdAndUpdate(req.session.userId, { name, bio, email });
   res.json({ success: true });
 });
+// Add to wishlist
+app.post('/api/wishlist', async (req, res) => {
+  if (!req.session.userId) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+
+  const { gadgetId } = req.body;
+
+  try {
+    const existing = await Wishlist.findOne({ user: req.session.userId, gadget: gadgetId });
+    if (existing) {
+      return res.status(400).json({ error: 'Already in wishlist' });
+    }
+
+    const entry = new Wishlist({
+      user: req.session.userId,
+      gadget: gadgetId
+    });
+
+    await entry.save();
+    res.json({ message: 'Added to wishlist' });
+  } catch (err) {
+    res.status(500).json({ error: 'Error adding to wishlist' });
+  }
+});
+
+
+// Get wishlist
+app.get('/api/wishlist', async (req, res) => {
+  if (!req.session.userId) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+
+  try {
+    const wishlist = await Wishlist.find({ user: req.session.userId }).populate('gadget');
+    res.json({ wishlist });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch wishlist' });
+  }
+});
+
+// Remove an item from wishlist by wishlist _id
+app.delete('/api/wishlist/:id', async (req, res) => {
+  if (!req.session || !req.session.userId) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+  
+  try {
+    const wishlistId = req.params.id;
+    const result = await Wishlist.deleteOne({ _id: wishlistId, user: req.session.userId });
+    
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: 'Wishlist item not found or not yours' });
+    }
+    
+    res.json({ message: 'Wishlist item removed successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+
 
 
 
