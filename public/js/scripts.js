@@ -222,12 +222,8 @@ async function renderGadgets(page = 1, search = '') {
             <p>${gadget.description}</p>
           </div>
           <div class="card-action center-align">
-            <a href="gadget-details.html?id=${gadget._id}" class="btn-small teal">Buy Now</a>
+            <a href="#!" class="btn-small teal">Buy Now</a>
           </div>
-          <a href="#" class="btn-small grey wishlist-btn" data-id="${gadget._id}">
-  <i class="material-icons">favorite_border</i>
-</a>
-
         </div>
       `;
             rowDiv.appendChild(colDiv);
@@ -294,25 +290,6 @@ searchInput.addEventListener('input', () => {
     currentPage = 1;
     renderGadgets(currentPage, searchQuery);
 });
-
-//wishlist function
-document.addEventListener('click', async (e) => {
-  if (e.target.closest('.wishlist-btn')) {
-    e.preventDefault();
-    const id = e.target.closest('.wishlist-btn').dataset.id;
-
-    const res = await fetch('/api/wishlist', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include', // <- REQUIRED for session cookie
-      body: JSON.stringify({ gadgetId: id })
-    });
-
-    const data = await res.json();
-    M.toast({ html: data.message || data.error });
-  }
-});
-
 
 // Initial render
 renderGadgets(currentPage, searchQuery);
